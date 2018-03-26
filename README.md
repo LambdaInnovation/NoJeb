@@ -10,6 +10,18 @@ The mod selectively disables certain feature(s) that are not useful during devel
 * Item/Block Models
 * Yggdrasil Authentication Service
 
+# Effect
+
+| Vanilla MC | NoJeb, all flags on |
+| --- | --- |
+| 28.0s | 18.0s |
+
+* Platform: i7-7700HQ 2.80GHz / 8G RAM / GTX1050i / Windows 10
+* IDE: Intellij IDEA
+* Tested on a A small mod written in Kotlin
+* Time span = Time of last log entry - Time of first log entry
+* Startup time is measured 3 times and taken average
+
 # Usage
 
 Clone the project and build the jar using:
@@ -23,7 +35,7 @@ And then add the `deobf` version of jar into your workspace.
 Add the following VM Arguments to enable the mod's behaviours:
 
 * `-Dnoauth`: Disable Yggdrasil authentication service
-    * This blocks world loading, as it is sending failed HTTP requests.
+    * Saves time of world loading, as it keeps sending failed HTTP requests.
 * `-Dnosound`: Disable loading of all sounds
     * Saves about 2s
 * `-Dnomodel`: Disable loading of all models 
