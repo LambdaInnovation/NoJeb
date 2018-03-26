@@ -8,14 +8,22 @@ import java.util.Objects;
 import static org.objectweb.asm.Opcodes.*;
 
 public class NoJebTransformer implements IClassTransformer {
-    // TODO: Mute ModelManager & SoundManager's
+    boolean noSound = System.getProperty("nosound") != null;
+    boolean noModel = System.getProperty("nomodel") != null;
+
+    public NoJebTransformer() {
+        if (noSound)
+            ModContainer.log.info("Sound will be muted.");
+        if (noModel)
+            ModContainer.log.info("Model will not be loaded.");
+    }
 
     @Override
     public byte[] transform(String name, String transformedName, byte[] basicClass) {
-        if (transformedName.equals("net.minecraft.client.audio.SoundHandler")) {
+        if (noSound && transformedName.equals("net.minecraft.client.audio.SoundHandler")) {
             return transformSoundHandler(basicClass);
         }
-        if (transformedName.equals("net.minecraft.client.renderer.block.model.ModelManager")) {
+        if (noModel && transformedName.equals("net.minecraft.client.renderer.block.model.ModelManager")) {
             return transformModelManager(basicClass);
         }
         return basicClass;

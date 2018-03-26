@@ -28,10 +28,7 @@ public class NoJeb
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
+        AuthenticationHandler.load();
     }
 
-    @EventHandler
-    @SideOnly(Side.CLIENT)
-    public void initClient(FMLInitializationEvent event) {
-    }
 }
